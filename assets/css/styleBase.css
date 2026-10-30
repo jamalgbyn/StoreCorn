@@ -1,0 +1,72 @@
+
+:root {
+  --primary: #F2F6FC;
+  --secondary: #0B1215;
+  --text-main: #212121;
+  --text-secondary: #F5F5F5;
+  --price:rgb(172, 255, 47);
+}
+
+body{
+    
+    background-color: var(--primary);
+    margin: 0;
+padding: 0;
+ font-family: "Tajawal";
+ font-weight: 700;
+height: 100%;
+}
+
+li {
+    text-wrap: nowrap;
+    color: var(--text-secondary);
+}
+
+a{
+    list-style: none;
+    text-decoration: none;
+}
+
+/* main contact */
+.hero-contact{
+    text-align: center;
+    color: #212121;
+    margin-bottom: 50px;
+}
+.hero-contact > h2{
+    color: #1e1d1daa;
+    font-size: small;
+}
+.contact-card{
+    display: grid;
+    background-color: rgba(235, 227, 227, 0.768);
+    width: 100%;
+    margin: auto;
+    border-radius: 3px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-items: center;
+    
+}
+.social-media{
+
+text-align: center;  
+
+}
+.social-media-icons{
+    display: flex;
+    gap: 10px;
+}
+.card-other{
+    height: 50px;
+    width: 200px;
+   margin:10px;
+
+    background-color: rgba(163, 155, 155, 0.68);
+}
+
+footer{
+    border-top-left-radius:0px;
+}
+
+

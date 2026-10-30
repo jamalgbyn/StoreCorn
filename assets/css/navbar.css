@@ -1,0 +1,37 @@
+
+nav{
+    position:sticky;
+    top: 0;
+z-index: 10;
+    display: flex;
+    width: 80%;
+    height: 64px;
+    margin: 15px auto;
+    justify-content: space-around;
+    align-items: center;  
+  }
+  
+  .lists{
+    padding: 10px;
+  
+    background-color: #212121ad;
+    display: flex;
+    gap: 20px;
+    backdrop-filter: blur(3px);
+    
+  }
+  .logo{
+  backdrop-filter: blur(10px);
+  background-color: #212121ad;
+  border-radius: 25px;
+  width: 30px;
+  height: 30px;
+  color: var(--text-secondary); 
+   padding: 5px;
+}
+
+.listCart{
+  background-color: #212121ad;
+  backdrop-filter: blur(10px);
+     padding: 5px;
+}

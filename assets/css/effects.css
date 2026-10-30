@@ -1,0 +1,27 @@
+.shadow{
+    box-shadow: 1px 2px 30px rgba(0, 0, 0, 0.1);
+}
+.shadow-top{
+    box-shadow: 1px -2px 30px rgba(0, 0, 0, 0.15);
+}
+.border{
+      border: 2px  solid darkgray;
+        border-radius: 20px;
+
+}
+
+.botton{
+    
+    background-color: rgb(68, 96, 121);
+    text-align: center;
+    text-wrap: nowrap;
+
+    padding: 10px;
+    border: 1px black solid;
+    border-radius: 20px;
+    color: snow;
+  
+}
+.botton > a{
+    color: inherit;
+}

@@ -1,0 +1,18 @@
+
+footer{
+    display: flex;
+    flex-flow: column;
+    padding: 20px;
+    background-color: var(--secondary);
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+line-height: 80px;
+    
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
