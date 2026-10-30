@@ -11,7 +11,7 @@
 }
 
 .botton{
-    
+    cursor: pointer;
     background-color: rgb(68, 96, 121);
     text-align: center;
     text-wrap: nowrap;

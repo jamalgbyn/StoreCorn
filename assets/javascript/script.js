@@ -13,11 +13,13 @@ let ordersClass = document.querySelector(".orders");
 let MainProducts = document.querySelector(".main-products")
 
 
+let numbeRofProduct=0;
+let numbeRofProductElement=document.querySelector(".number-of-product");
 
 
 
 // logic for cart
-let cart = ["",0,0,0,0,0,0,0,0,0];
+let cart = [];
 let order = [""];
 let total = 0;
 let products = 10; 
@@ -76,13 +78,14 @@ let priceProduct = [
 
 let htmlCart = document.querySelector(".hero-cart");
 let elementTotal = document.querySelector(".price");
-
+function displayNumberOfCart(){
+  numbeRofProductElement.innerHTML =`${(cart.length/15)}`;
+}
 function displayCart(){
-  
   if(order.length!=0 && cart.length!=0){
     for(let i =0 ; i<cart.length;i++){
       
-      Product(imgProduct[i],NameProduct[i],details[i],priceProduct[i]);
+      Product(cart[i].img,cart[i].name,cart[i].details,cart[i].price);
       
     }
     
@@ -151,7 +154,7 @@ function displayCart(){
     bottomIncrementDecrement1.setAttribute("class","bottom-increment-decrement");
     bottomIncrementDecrement1.onclick = function(){
       ++countOrders;
-       totalPrice =  countOrders * productPrice;
+      totalPrice =  countOrders * productPrice;
        total += productPrice;
        elementTotal.textContent = `${total}$`;
        CountProduct.textContent = `${countOrders}`;                
@@ -169,7 +172,7 @@ function displayCart(){
 
   }
 
-
+  
   function displayProduct(){
     if(products!=0){
     for(let i =0; i<products;i++){
@@ -178,7 +181,7 @@ product.className = "product";
 
 let image = document.createElement("div");
 image.className = "image";
-image.style.backgroundImage = `url('${imgProduct[i]}')`;
+image.style.backgroundImage = imgProduct[i];
 product.append(image);
 
 let deitails = document.createElement("div");
@@ -202,15 +205,29 @@ price.textContent = `$${priceProduct[i]}`;
 priceAndAddCart.append(bottom);
 priceAndAddCart.append(price);
 product.append(priceAndAddCart)
-
+let toCart={};
     MainProducts.append(product);
+    
+   bottom.onclick = function (){
+toCart ={img: imgProduct[i],
+  name:NameProduct[i],
+  details:details[i]
+  ,price: priceProduct[i],}
+  
+  cart +=toCart;
+  displayNumberOfCart();
+   };
 
     }
 
     }
   }
-  displayProduct();
-  displayCart();
-
 
   
+if (htmlCart) {
+    displayCart();
+}
+
+if (MainProducts) {
+    displayProduct();
+  }
