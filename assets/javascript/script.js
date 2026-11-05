@@ -18,9 +18,9 @@ let numbeRofProductElement = document.querySelector(".number-of-product");
 
 
 // logic for cart
-let cart = JSON.parse(localStorage.getItem("ct")) || [];
+let cart = JSON.parse(localStorage.getItem("qq")) || [];
 let total = 0;
-let products = [
+let products =[
   {
     imgProduct: "url('https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=800')",
     NameProduct: "ماوس لاسلكي",
@@ -97,21 +97,21 @@ let products = [
 let htmlCart = document.querySelector(".hero-cart");
 let elementTotal = document.querySelector(".price");
 function displayNumberOfCart() {
-  let orders=0;
-  if(products.length!=0){
-    for(let i=0;i<products.length;i++){
-     orders += products[i].orderCount; 
+  let orders = 0;
+  if (cart.length != 0) {
+    for (let i = 0; i < cart.length; i++) {
+
+      orders += cart[i].orderCount;
 
     }
-  numbeRofProductElement.innerHTML = `${orders}`;
-
+    numbeRofProductElement.innerHTML = `${orders}`;
   }
 }
 function displayCart() {
   if (cart.length != 0) {
     for (let i = 0; i < cart.length; i++) {
 
-      Product(cart[i].img, cart[i].name, cart[i].details, cart[i].price,i,cart[i].orderCount);
+      Product(cart[i].img, cart[i].name, cart[i].details, cart[i].price, i);
 
     }
 
@@ -130,11 +130,11 @@ function displayCart() {
   }
 }
 
-function Product(img, NameProduct, detailsProduct, productPrice,i,orderCount) {
-
-
-  let totalPrice = orderCount * productPrice;
-
+function Product(img, NameProduct, detailsProduct, productPrice, i) {
+  let totalPrice;
+  if (cart[i].orderCount >= 0 && productPrice >= 0) {
+    totalPrice = cart[i].orderCount * productPrice;
+  }
   //add order
   let Aorder = document.createElement("div");
   Aorder.setAttribute("class", "order")
@@ -159,33 +159,45 @@ function Product(img, NameProduct, detailsProduct, productPrice,i,orderCount) {
   bottomIncrementDecrement.setAttribute("class", "bottom-increment-decrement");
   bottomIncrementDecrement.textContent = "-";
   bottomIncrementDecrement.onclick = function () {
-    if (orderCount != 0) {
-      --orderCount;
-      totalPrice = orderCount * productPrice;
-      total -= productPrice;
+    if (cart[i].orderCount > 0 && productPrice >= 0) {
+      cart[i].orderCount -= 1;
+      totalPrice = cart[i].orderCount * productPrice;
+      if (total > 0) {
+        total -= productPrice;
+      }
       elementTotal.textContent = `${total}$`;
-      CountProduct.textContent = `${orderCount}`;
+      CountProduct.textContent = `${cart[i].orderCount}`;
       priceProduct.textContent = `${totalPrice}$`;
-    } if(orderCount==0){
-      cart.pop(i);
+
+    } if (cart[i].orderCount == 0) {
+      
+      
+    
+      cart.pop(cart[i]);
     }
+    localStorage.setItem("qq", JSON.stringify(cart));  
+        displayNumberOfCart();
+
   };
   addProduct.append(bottomIncrementDecrement);
 
   let CountProduct = document.createElement("div");
-  CountProduct.textContent = `${orderCount}`;
+  CountProduct.textContent = `${cart[i].orderCount}`;
   addProduct.append(CountProduct);
 
   let bottomIncrementDecrement1 = document.createElement("button");
   bottomIncrementDecrement1.textContent = "+";
   bottomIncrementDecrement1.setAttribute("class", "bottom-increment-decrement");
   bottomIncrementDecrement1.onclick = function () {
-    ++orderCount;
-    totalPrice = orderCount * productPrice;
+    cart[i].orderCount +=1;
+    totalPrice = cart[i].orderCount * productPrice;
     total += productPrice;
     elementTotal.textContent = `${total}$`;
-    CountProduct.textContent = `${orderCount}`;
+    CountProduct.textContent = `${cart[i].orderCount}`;
     priceProduct.textContent = `${totalPrice}$`;
+    localStorage.setItem("qq", JSON.stringify(cart));
+displayNumberOfCart();
+
 
   };
   addProduct.append(bottomIncrementDecrement1);
@@ -193,15 +205,16 @@ function Product(img, NameProduct, detailsProduct, productPrice,i,orderCount) {
   let priceProduct = document.createElement("div");
   priceProduct.setAttribute("class", "price-product");
   addProduct.append(priceProduct);
-
   priceProduct.textContent = `${totalPrice}$`;
+        displayNumberOfCart();
+
 
 
 }
 
 
 function displayProduct() {
-  if (products.length!= 0) {
+  if (products.length != 0) {
     for (let i = 0; i < products.length; i++) {
       let product = document.createElement("div");
       product.className = "product";
@@ -234,30 +247,65 @@ function displayProduct() {
       product.append(priceAndAddCart)
       let toCart = {};
       MainProducts.append(product);
-
-      bottom.onclick = function () {
-      if(products[i].orderCount!=0){
-        products[i].orderCount++;
+    
         
-      } else{
-        products[i].orderCount++;
-             toCart = {
-          img: products[i].imgProduct,
-          name: products[i].NameProduct,
-          details: products[i].details,
-          price: products[i].priceProduct,
-          orderCount: products[i].orderCount
-        }
-        cart.push(toCart);
-      }
-       
-        
+      let add=false;
 
-       
+        bottom.onclick = function () { 
+           
+if(cart.length>0){
+for(let j=0;j<cart.length;j++){
+  if(products[i].NameProduct==cart[j].name){
+     add = false;
+    cart[j].orderCount+=1;
+  localStorage.setItem("qq", JSON.stringify(cart));
+   
 
-        localStorage.setItem("ct", JSON.stringify(cart));
-        displayNumberOfCart();
-      
+  break;
+  } else {
+    add = true;
+  }
+
+}
+
+if(add){
+  toCart = {
+       img: products[i].imgProduct,
+       name: products[i].NameProduct,
+       details: products[i].details,
+       price: products[i].priceProduct,
+       orderCount:1,
+       
+     }
+     
+     cart.push(toCart);
+     localStorage.setItem("qq", JSON.stringify(cart)); 
+     add=false; 
+}
+
+
+}else {
+    toCart = {
+       img: products[i].imgProduct,
+       name: products[i].NameProduct,
+       details: products[i].details,
+       price: products[i].priceProduct,
+       orderCount:1,
+       
+     }
+     
+     cart.push(toCart);
+     localStorage.setItem("qq", JSON.stringify(cart));
+}
+
+ 
+  
+displayNumberOfCart();
+   localStorage.setItem("qq", JSON.stringify(cart));
+
+  
+
+  
       };
 
     }
@@ -266,7 +314,8 @@ function displayProduct() {
 }
 
 
-if (htmlCart ) {
+
+if (htmlCart) {
   displayCart();
 }
 
