@@ -9,13 +9,25 @@
 
 
 
+
 let ordersClass = document.querySelector(".orders");
 let MainProducts = document.querySelector(".main-products")
 let ButtonRemove = document.querySelector(".delete-order");
-
+let main = document.querySelector("main");
 let numbeRofProductElement = document.querySelector(".number-of-product");
 
-
+let actionStatus = document.createElement("div");
+actionStatus.style.animationPlayState =  "running";
+function OnactionStatus(text,color="hwb(110 7% 15% / 0.603)"){
+  actionStatus.classList.add("action-status");
+  main.append(actionStatus);
+  actionStatus.textContent = text;
+  actionStatus.style.backgroundColor = color;
+  actionStatus.onanimationend = function (){
+    actionStatus.classList.remove("action-status");
+    main.removeChild(actionStatus);
+  }
+}
 
 // logic for cart
 let cart = JSON.parse(localStorage.getItem("qqq")) || [];
@@ -104,8 +116,8 @@ function displayNumberOfCart() {
       orders += cart[i].orderCount;
 
     }
-    numbeRofProductElement.innerHTML = `${orders}`;
   }
+  numbeRofProductElement.innerHTML = `${cart.length}`;
 }
 function displayCart() {
   if (cart.length != 0) {
@@ -192,7 +204,10 @@ ordersClass.removeChild(Aorder);
 }
 
   deleteOrder.onclick = function () {
+    OnactionStatus("تم ازاله المنتج من السلة بنجاح","hwb(110 7% 15% / 0.603);");
     RemoveOrder();
+        displayNumberOfCart();
+
   };
 
 let bottomIncrementDecrement = document.createElement("button");
@@ -215,6 +230,7 @@ let bottomIncrementDecrement = document.createElement("button");
 
       
     RemoveOrder();
+    
     }
     localStorage.setItem("qqq", JSON.stringify(cart));  
         displayNumberOfCart();
@@ -295,7 +311,7 @@ function displayProduct() {
       let add=false;
 
         bottom.onclick = function () { 
-          
+          OnactionStatus("الاضافه الى السلة");
 if(cart.length>0){
 for(let j=0;j<cart.length;j++){
   if(products[i].NameProduct==cart[j].name){
@@ -320,7 +336,7 @@ if(add){
        name: products[i].NameProduct,
        details: products[i].details,
        price: products[i].priceProduct,
-       orderCount:1,
+       orderCount:0,
        
      }
      
@@ -336,7 +352,7 @@ if(add){
        name: products[i].NameProduct,
        details: products[i].details,
        price: products[i].priceProduct,
-       orderCount:1,
+       orderCount:0,
        
      }
      
@@ -349,7 +365,6 @@ if(add){
 displayNumberOfCart();
    localStorage.setItem("qqq", JSON.stringify(cart));
 
-  
 
   
       };
@@ -358,13 +373,21 @@ displayNumberOfCart();
 
   }
 }
+    displayNumberOfCart();
 
 console.log("test");
-
+let t = document.querySelector(".logo");
 
 if (htmlCart) {
-  displayCart();
-}
+  if(cart.length==0){
+        OnactionStatus("السلة فارغه","hwb(110 7% 15% / 0.603);");
+  
+  } else {
+
+    displayCart();
+  }
+
+  }
 
 if (MainProducts) {
   displayProduct();

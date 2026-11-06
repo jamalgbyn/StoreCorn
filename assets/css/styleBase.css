@@ -70,3 +70,43 @@ footer{
 }
 
 
+.action-status{
+position: fixed;
+top: 90px;
+left: 0;
+right: 0;
+ padding:15px;
+width:fit-content;
+margin: 10px auto;
+border-radius: 8px;
+backdrop-filter: blur(10px);
+background: hwb(0 7% 15% / 0.603);
+ color:rgb(29, 28, 28);
+ text-wrap: nowrap;
+
+animation-name: actionShow;
+animation-duration: 2s;
+animation-timing-function:cubic-bezier(0.22, 1, 0.36, 1);
+animation-direction:alternate;
+animation-fill-mode:forwards ;
+animation-iteration-count: 2;
+animation-play-state:running;
+font-size: smaller;
+filter: drop-shadow(1px 1px 30px rgba(0, 0, 0, 0.123));
+
+}
+
+
+@keyframes actionShow {
+    0% {
+transform: translateY(-50px) scale(0.5);
+opacity: 0;
+filter: blur(10px);
+
+}
+100%{
+    transform: translateY(0px) scale(1);
+        opacity: 1;
+
+    }
+}
