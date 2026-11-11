@@ -4,8 +4,6 @@
 
 
 
-console.log("");
-
 
 
 
@@ -395,4 +393,3 @@ if (MainProducts) {
   displayProduct();
 }
 
-total=0;
