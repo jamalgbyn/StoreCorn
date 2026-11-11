@@ -1,0 +1,52 @@
+p{
+    font-weight: 500;
+}
+.card-corn{
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    justify-content: space-around;
+
+    background-color: black;
+    width: 80%;
+    margin: auto;
+padding: 20px;
+color:aliceblue;
+border-radius:45px;
+}
+.card-corn > h1{
+font-weight: 900;
+font-size: 50px;
+    color:rgb(120, 221, 19);
+}
+
+.why-corn-store{
+margin-top: 120px;
+margin-bottom: 120px;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.why-corn-store div > h4{
+font-size: 20px;
+}
+
+.why-corn-store div{
+    width: 90%;
+    border-radius: 50px;
+    margin: 15px auto;
+    background-color: rgb(229, 225, 216);
+padding: 15px;
+}
+
+
+
+.offers{
+    
+}
+
+
+

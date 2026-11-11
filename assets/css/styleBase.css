@@ -8,7 +8,7 @@
 }
 
 body{
-    
+box-sizing: border-box;
     background-color: var(--primary);
     margin: 0;
 padding: 0;
@@ -23,6 +23,7 @@ li {
 }
 
 a{
+    color:snow;
     list-style: none;
     text-decoration: none;
 }
@@ -55,6 +56,7 @@ text-align: center;
 }
 .social-media-icons{
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 .card-other{
@@ -109,4 +111,26 @@ filter: blur(10px);
         opacity: 1;
 
     }
+}
+
+body *{
+    animation-name: load-pop;
+    animation-timing-function: ease;
+    animation-duration: 1s;
+}
+
+@keyframes load-pop{
+    0%{
+        transform: translateY(50px);
+        opacity: 0;
+        scale: 0.9;
+    }
+    100%{
+    transform: translateY();
+        scale: 1;
+
+    }
+}
+.bottom-increment-decrement{
+    border-color: #0b121500;
 }

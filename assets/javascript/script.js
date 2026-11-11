@@ -4,7 +4,7 @@
 
 
 
-
+console.log("");
 
 
 
@@ -117,14 +117,14 @@ function displayNumberOfCart() {
 
     }
   }
-  numbeRofProductElement.innerHTML = `${cart.length}`;
+  numbeRofProductElement.innerHTML = `${orders}`;
 }
 function displayCart() {
-  if (cart.length != 0) {
+  if (cart.length > 0)  {
     for (let i = 0; i < cart.length; i++) {
 elementTotal.textContent = `${total}$`;
       Product(cart[i].img, cart[i].name, cart[i].details, cart[i].price, i);
-
+ 
     }
 
   }
@@ -207,6 +207,7 @@ ordersClass.removeChild(Aorder);
     OnactionStatus("تم ازاله المنتج من السلة بنجاح","hwb(110 7% 15% / 0.603);");
     RemoveOrder();
         displayNumberOfCart();
+        
 
   };
 
@@ -381,14 +382,17 @@ let t = document.querySelector(".logo");
 if (htmlCart) {
   if(cart.length==0){
         OnactionStatus("السلة فارغه","hwb(110 7% 15% / 0.603);");
-  
-  } else {
-
-    displayCart();
-  }
+ 
+        
+     
+        
+      }
+      displayCart();
 
   }
 
 if (MainProducts) {
   displayProduct();
 }
+
+total=0;

@@ -10,50 +10,52 @@ padding-bottom: 100px;
 }
 .orders{
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
+    flex-wrap: wrap;
     background-color: wheat;
-    width: 80%;
+    width: 100%;
     height: 80%;
     margin: auto;
     border-radius: 10px;
     justify-content: space-around;
-
+    
 }
 
 
 .order{
-display: flex;
-flex-flow: row-reverse;
+    display: flex;
+    flex-flow: row-reverse;
     background-color: rgb(128, 118, 118);
-    width: 90%;
-    height: 80%;
-    margin: 10px auto;
+    width: 3fr;
+    margin: 15px auto;
     border-radius: 50px;
     align-items: center;
-justify-content: space-between;
-color: snow;
-
+    line-break:strict;
+    color: snow;
+    flex-wrap: wrap;
+    width: 90%;
+    justify-content: center;
 }
 
 .order-img{
-
+    flex-wrap: wrap;
     background-color: black;
     background-size:cover;
     background-repeat: no-repeat;
     border-radius: 50px;
-    width: 150px;
-    height:150px;
+    width: 100%;
+    height: 250px;
 }
 
 /* styeling for cart empty */
 
 .cart-empty{
     
-padding: 100px;
-padding-bottom: 100px;
-text-align: center;
-
-color: rgba(255, 0, 0, 0.555);
+    padding: 100px;
+    padding-bottom: 100px;
+    text-align: center;
+    
+    color: rgba(255, 0, 0, 0.555);
 }
 
 
@@ -66,7 +68,7 @@ color: rgba(255, 0, 0, 0.555);
     border-radius: 30px;
 }
 .product-details{
-
+    
     display: flex;
     flex-flow: column;
     text-align: center;
@@ -80,21 +82,54 @@ color: rgba(255, 0, 0, 0.555);
     margin-left: 10px;
     margin-right: 10px;
 }
-.total-price{
+.pay{
+
     display: flex;
     flex-flow: column;
-    background-color: #383838;
-    border-radius: 4px;
+    position: sticky;
+    bottom: 10px;
+    right: 0;
+    left: 0;
+    justify-content:space-between;
+    align-items: center;
+    margin: 15px;
+    z-index: 10;
+
+}
+.total-price{
+    
+     display: flex;
+    flex-flow: column;
+    background-color: #383838c4;
+    border-radius: 10px;
     color: snow;
     width: 200px;
-    margin: 100px auto  10px auto;
-   
-    align-items: center;
+    margin: 10px auto  10px auto;
+  
+    backdrop-filter: blur(5px);
+    padding: 5px;    
+left: 0;
+
+align-items: center;
 }
 .total-price > .price{
     margin: 10px;
     color: rgba(51, 255, 0, 0.694);
 }
+.btn-pay,.a{
+    text-align: center;
+    background-color: #3361a1c4;
+    border-radius: 10px;
+
+    padding: 15px;
+    border: solid 1px rgb(0, 0, 0);
+    backdrop-filter: blur(5px);
+    padding: 5px;    
+    color: snow;
+    
+
+}
+
 
 .delete-order {
     display: flex;

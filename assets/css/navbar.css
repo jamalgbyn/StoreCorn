@@ -1,18 +1,22 @@
 
 nav{
+   display: flex;
     position:sticky;
     top: 0;
+    bottom: 10px;
+    left: 0;
+    right: 0;
 z-index: 10;
-    display: flex;
-    width: 80%;
-    height: 64px;
-    margin: 15px auto;
+
+   
+    height: 64px;                   
+    
     justify-content: space-around;
     align-items: center;  
   }
   
   .lists{
-    padding: 10px;
+    padding:15px;
   
     background-color: #212121ad;
     display: flex;
@@ -31,9 +35,12 @@ z-index: 10;
 }
 
 .listCart{
+  display: flex;
   background-color: #212121ad;
   backdrop-filter: blur(10px);
      padding: 5px;
+}
+.listCart::after{
 }
 .number-of-product{
   color: red;
